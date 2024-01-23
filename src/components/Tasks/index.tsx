@@ -1,20 +1,44 @@
+import { useMemo } from 'react'
 import { useSelector } from 'react-redux'
-import { ITask } from '../../types'
+import { IFilter, ITask } from '../../types'
 import Task from './Task'
 
-// const tasksSorting = (task: ITask, prevTask: ITask) =>
-//   task.isComplete
-//     ? 1
-//     : task.isPriority
-//     ? -1
-//     : task.createdAt > prevTask.createdAt
+const tasksSorting = (a: ITask, b: ITask) => {
+  // Sort completed tasks to the bottom
+  if (a.isComplete && !b.isComplete) {
+    return 1
+  } else if (!a.isComplete && b.isComplete) {
+    return -1
+  }
 
-export function Tasks() {
+  // Sort priority tasks to the top
+  if (a.isPriority && !b.isPriority) {
+    return -1
+  } else if (!a.isPriority && b.isPriority) {
+    return 1
+  }
+
+  // If tasks have the same completion status and priority, sort them based on their creation timestamp
+  return a.createdAt - b.createdAt
+}
+
+export function Tasks({ listFilter }: { listFilter: IFilter }) {
+  // Select all tasks from the store
   const tasks = useSelector((state: { tasks: ITask[] }) => state.tasks)
+  const filteredList = useMemo(() => {
+    const usableTasks = [...tasks]
+
+    console.log(listFilter)
+    if (!listFilter) return usableTasks
+
+    return usableTasks.filter(
+      task => task[listFilter.name] === listFilter.value
+    )
+  }, [tasks, listFilter])
 
   return (
     <ul role='list' className='divide-y divide-gray-100 max-sm:overflow-x-auto'>
-      {tasks.map((task: ITask) => (
+      {filteredList.sort(tasksSorting).map((task: ITask) => (
         <Task key={task.id} task={task} />
       ))}
     </ul>

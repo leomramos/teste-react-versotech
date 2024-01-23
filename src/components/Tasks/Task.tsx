@@ -54,7 +54,12 @@ export default function Task({ task }: { task: ITask }) {
 
         <div className='min-w-0'>
           <div className='flex items-start gap-x-3'>
-            <p className='text-sm font-semibold leading-6 text-gray-900'>
+            <p
+              className={cn([
+                'text-sm font-semibold leading-6 text-gray-900',
+                { 'line-through': task.isComplete },
+              ])}
+            >
               {task.name}
             </p>
           </div>

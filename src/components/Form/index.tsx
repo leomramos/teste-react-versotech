@@ -12,9 +12,12 @@ export function Form() {
   const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault()
 
-    if (!task) return
+    // Check if the task is empty and return if true
+    if (task === '') return
 
     dispatch(createTask(task))
+
+    // Clear the task input field after dispatching the action
     setTask('')
   }
 
