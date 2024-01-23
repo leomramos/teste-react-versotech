@@ -37,14 +37,14 @@ export function Form() {
           <input
             value={task}
             onChange={({ target: { value } }) => setTask(value)}
-            className='block w-full rounded-none rounded-l-md border-0 py-1.5 pl-10 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+            className='block w-full rounded-none rounded-l-md border-0 py-1.5 pl-10 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6'
             placeholder='Nova tarefa'
           />
         </div>
         <button
           type='submit'
           disabled={!task}
-          className='relative -ml-px inline-flex items-center bg-indigo-600 hover:bg-indigo-500 gap-x-1.5 rounded-r-md px-3 py-2 text-sm font-semibold text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:opacity-50 disabled:pointer-events-none'
+          className='relative -ml-px inline-flex items-center bg-blue-600 hover:bg-blue-500 gap-x-1.5 rounded-r-md px-3 py-2 text-sm font-semibold text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 disabled:opacity-50 disabled:pointer-events-none'
         >
           <PlusIcon
             className='-ml-0.5 h-5 w-5 text-gray-200'

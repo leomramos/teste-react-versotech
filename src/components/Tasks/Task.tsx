@@ -57,7 +57,7 @@ export default function Task({ task }: { task: ITask }) {
           type='checkbox'
           checked={task.isComplete}
           onChange={({ target: { checked } }) => handleComplete(checked)}
-          className='cursor-pointer h-6 w-6 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600'
+          className='cursor-pointer h-6 w-6 rounded border-gray-300 text-blue-600 focus:ring-blue-600'
         />
 
         <div className='min-w-0'>
@@ -106,7 +106,7 @@ export default function Task({ task }: { task: ITask }) {
           />
           <span className='sr-only'>Marcar {task.name} como prioridade</span>
           <StarIcon
-            className='h-6 w-6 peer-checked:fill-indigo-600 cursor-pointer stroke-indigo-600'
+            className='h-6 w-6 peer-checked:fill-blue-600 cursor-pointer stroke-blue-600'
             aria-hidden='true'
           />
         </label>
@@ -137,7 +137,7 @@ export default function Task({ task }: { task: ITask }) {
       <EditDialog
         initialName={task.name}
         isOpen={isEditing}
-        closeDialog={() => setEditing(false)}
+        handleCancel={() => setEditing(false)}
         saveEdit={saveEdit}
       />
     </motion.li>
